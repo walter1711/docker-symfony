@@ -1,0 +1,14 @@
+FROM php:5.6-apache
+
+# Installing PHP, PHP extensions and necessary packages
+
+RUN apt-get update  \
+    && apt-get install -y \
+    && docker-php-ext-install mysql \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-install pdo_mysql 
+
+# Exposing web ports
+EXPOSE 80 443
+
+CMD apachectl -D FOREGROUND
